@@ -950,7 +950,7 @@ def plots(sector, cost, income, cpys, year, value1, switch):
             fig_hist = go.Figure()
             for n, name in enumerate(df_salary.gender.unique()):
                 fig_hist.add_trace(
-                    go.Box(values=df_salary[
+                    go.Box(y=df_salary[
                         df_salary['gender'] == name].totalyearlycompensation,
                            names=name,
                            marker_color=cols[n - 1]))
@@ -1041,9 +1041,9 @@ def plots(sector, cost, income, cpys, year, value1, switch):
                               marker_color=cols[n - 1]))
 
     fig_hist.layout.update(showlegend=False)
-    fig_hist.update_yaxes(title=f"Boxplot Yearly Compensation in USD")
+    fig_hist.update_yaxes(title=f"Violin per Month Compensation in USD")
     if switch is True:
-        fig_hist.update_yaxes(title=f"Violin per Month Compensation in USD")
+        fig_hist.update_yaxes(title=f"Boxplot Yearly Compensation in USD")
     ############################################Return######################################################
 
     return bar_figure, map_figure, indicator_chart, radar_chart1, radar_chart2, \
