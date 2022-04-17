@@ -992,7 +992,7 @@ def plots(sector, cost, income, cpys, year, value1, switch):
     elif value1 == "Race":
 
         race_counts = df_salary.Race.value_counts()
-        fig_pie = px.pie(values=race_counts, names=race_counts.index, title='Race proportions in the dataset',
+        fig_pie = px.pie(values=race_counts.values, names=race_counts.index, title='Race proportions in the dataset',
                          hole=0.3,
                          color_discrete_sequence=cols)
         fig_pie.update_layout(title=dict(y=0.85), legend=dict(y=.0, x=1),
@@ -1017,7 +1017,7 @@ def plots(sector, cost, income, cpys, year, value1, switch):
 
     elif value1 == "Education":
         education_counts = df_salary.Education.value_counts()
-        fig_pie = px.pie(values=education_counts, names=education_counts.index,
+        fig_pie = px.pie(values=education_counts.values, names=education_counts.index,
                          title='Education proportions in the dataset', hole=0.3,
                          color_discrete_sequence=cols)
         fig_pie.update_layout(title=dict(y=0.85), legend=dict(y=.0, x=1),
