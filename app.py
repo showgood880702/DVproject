@@ -952,7 +952,7 @@ def plots(sector, cost, income, cpys, year, value1, switch):
                 fig_hist.add_trace(
                     go.Box(y=df_salary[
                         df_salary['gender'] == name].totalyearlycompensation,
-                           names=name,
+                           name=name,
                            marker_color=cols[n - 1]))
         else:
             fig_hist = go.Figure()
