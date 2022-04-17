@@ -36,8 +36,7 @@ h1 {
   font-family: ui-monospace;
 }
 
-h3 {
-  color:#00308F;
+h3 {margin-top:5px;
   margin-block-start:0.3em;
   font-size: 120%;
 }
@@ -60,16 +59,16 @@ h4 {
 /* Boxes */
 
 .box {
-  border-radius: 20px;
-  background-color: #F9F9F8;
+  border-radius: 10px;
+  background-color: #FFFFFF;
   margin: 10px;
-  padding: 25px;
+  padding: 10px;
   box-shadow: 2px 2px 2px lightgrey;
 }
 
 .box_comment {
   border-radius: 20px;
-  background-color: #d4f5c29a;
+  background-color: #FAEBD7;
   margin: 2px;
   padding: 1px;
   box-shadow: 2px 2px 2px lightgrey;
