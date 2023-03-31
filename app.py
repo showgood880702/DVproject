@@ -236,27 +236,34 @@ app.layout = html.Div(
                                                    'width': '70%'},
                                             # className='box'
                                         )
-                                    ], id='drop and choose',
+                                    ], 
+                                    id='drop and choose',
                                     style={'display': 'flex',
                                            'margin-left': '10px',
                                            'margin-right': '10px'},
                                     # className='box'
                                 ),
                             ],
-                            id='subtitle1', className='box'),
+                            id='subtitle1', 
+                            style={'margin-top': '20px',
+                                   'margin-bottom': '30px'},
+                            # className='box'
+                        ),
                         html.Div(
                             [
                                 dcc.Graph(id='bar_graph'),
                             ],
                             id='barplot',
-                            # style={'height': '10%'},
-                            className='box'
+                            style={'margin-left': '20px',
+                                   'margin-right': '20px',
+                                   'align-items': 'bottom'},
+                            # className='box'
                         ),
                     ],
                     id='1st col',
-                    style={'width': '50%'}
+                    style={'width': '50%'},
+                    className='box'
                 ),
-
                 html.Div(
                     [
                         html.Div(
@@ -358,9 +365,11 @@ app.layout = html.Div(
                     id='2nd col',
                     style={'width': '50%'},
                     className='box'
-                ), ],
+                ), 
+            ],
             id='2nd row',
-            style={'display': 'flex'},
+            style={'display': 'flex',
+                   'flex-direction': 'row'},
             # className='box'
         ),
         html.Div(
@@ -727,7 +736,8 @@ def plots(sector, cost, income, cpys, year, value1, switch):
                                     name='costIndex',
                                     orientation='h',
                                     marker=dict(color='#27AE60'),
-                                    hovertemplate='State: %{y}<br>' + 'Cost of Living Index: %{x}'
+                                    hovertemplate='State: %{y}<br>' + 'Cost of Living Index: %{x}',
+                                    # width=12
                                     ),
                              row=1, col=1
                              )
@@ -736,7 +746,8 @@ def plots(sector, cost, income, cpys, year, value1, switch):
                                     name=sector,
                                     orientation='h',
                                     marker=dict(color='#EC7063'),
-                                    hovertemplate='State: %{y}<br>' + 'Salary: %{x}'
+                                    hovertemplate='State: %{y}<br>' + 'Salary: %{x}',
+                                    # auto_width=True
                                     ),
                              row=1, col=2
                              )
@@ -747,7 +758,8 @@ def plots(sector, cost, income, cpys, year, value1, switch):
                                         orientation='h',
                                         marker=dict(color='#3498DB'),
                                         opacity=0.6,
-                                        hovertemplate='State: %{y}<br>' + 'State Average Income: %{x}'
+                                        hovertemplate='State: %{y}<br>' + 'State Average Income: %{x}',
+                                        # auto_width=True
                                         ),
                                  row=1, col=2
                                  )
@@ -767,7 +779,8 @@ def plots(sector, cost, income, cpys, year, value1, switch):
                                     name=sector,
                                     orientation='h',
                                     marker=dict(color='#EC7063'),
-                                    hovertemplate='State: %{y}<br>' + 'Salary: %{x}'
+                                    hovertemplate='State: %{y}<br>' + 'Salary: %{x}',
+                                    # auto_width=True
                                     ),
                              )
         if not income:
@@ -777,7 +790,8 @@ def plots(sector, cost, income, cpys, year, value1, switch):
                                         orientation='h',
                                         marker=dict(color='#3498DB'),
                                         opacity=0.6,
-                                        hovertemplate='State: %{y}<br>' + 'State Average Income: %{x}'
+                                        hovertemplate='State: %{y}<br>' + 'State Average Income: %{x}',
+                                        # auto_width=True
                                         ),
                                  )
             bar_figure.update_layout(barmode='overlay')
@@ -787,7 +801,7 @@ def plots(sector, cost, income, cpys, year, value1, switch):
                                  yaxis=dict(title='Salary'),
                                  showlegend=True,
                                  )
-    bar_figure.update_layout(width=600, height=600)
+    # bar_figure.update_layout(width=600, height=600)
     #############################################Choropleth Plot######################################################
     df_salary0 = df_salary[df_salary['Year'] == year].copy()
     mean_salary0 = df_salary0.groupby(['State'])['totalyearlycompensation'].mean()
@@ -903,8 +917,9 @@ def plots(sector, cost, income, cpys, year, value1, switch):
                                   delta={'reference': 4},
                                   selector=dict(type='indicator'),
                                   )
-    indicator_chart.update_layout(width=250, height=200,
-                                  margin={"r": 25, "t": 10, "l": 25, "b": 0})
+    indicator_chart.update_layout(height=200,
+                                  margin={"r": 25, "t": 20, "l": 25, "b": 0}
+                                  )
     ############################################Line Chart######################################################
     df1 = df_salary.groupby(["ExperienceLevel", "Region"])["totalyearlycompensation"].median().reset_index()
 
@@ -922,8 +937,8 @@ def plots(sector, cost, income, cpys, year, value1, switch):
                          title="Software Engineer df_salary by Experience and Regions",
                          template='ggplot2')
 
-    line_plot1.update_layout(width=600, height=450)
-    line_plot2.update_layout(width=600, height=450)
+    line_plot1.update_layout(height=450)
+    line_plot2.update_layout(height=450)
     ############################################Correlation######################################################
     delt = 0.04
     ratings = [el + random.uniform(-delt, delt) for el in
